@@ -22,3 +22,14 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\File::class, function (Faker\Generator $faker) {
+
+	$id = $faker->unique()->randomDigit;
+    
+    return [
+        'id' => $id,
+        'filename' => str_random(10),
+        'download' => url("/api/download/" . $id) 
+    ];
+});

@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('/', 'FileController@store');
+
+Route::get('/', 'FileController@index');
+
+Route::get('/{id}', 'FileController@show');
+
+Route::get('/download/{id}', 'FileController@download');
