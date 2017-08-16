@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-// use Illuminate\Filesystem\Filesystem;
+use App\Investoo\CsvFile;
 
 class FileController extends Controller
 {
@@ -28,24 +28,16 @@ class FileController extends Controller
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, File $file)
+    public function store(Request $request, File $file, CsvFile $csvFile)
     {
         $string = isset($request->csv) ? $request->csv : '';
 
-        $csv = explode(',', $string);
+        $array = explode(',', $string);
 
         // verify that the string is a valid CSV
-        if ($csv == array_filter($csv)) {
-            $file->filename = str_random(10);
-
-            $file->download = url("/api/download/" . $file->max('id') + 1);
-
-            if ($file->save()) {
-                
-                Storage::disk('local')->put($file->id . '.csv', $string);
-
-                return response(['status' => 'created'], 201);
-            }
+        if ($array == array_filter($array)) {
+     
+            if ($csvFile->save($string, $file)) return response(['status' => 'created'], 201);;
 
             // if the file didn't save then we have a server error
             return reponse(500);
@@ -73,7 +65,6 @@ class FileController extends Controller
      */
     public function download(File $file, $id)
     {       
-
         if ($file = $file->find($id)) {
             $filename = "{$file->id}.csv";
 
