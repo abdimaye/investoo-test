@@ -11,7 +11,9 @@ class CsvFile implements FileSaverInterface
 	{
 	    $file->filename = str_random(10);
 
-        $file->download = url("/api/download/" . $file->max('id') + 1);
+        $nextId = $file->max('id') + 1;
+
+        $file->download = url("/api/download/" . $nextId) ;
 
         if ($file->save()) {
             

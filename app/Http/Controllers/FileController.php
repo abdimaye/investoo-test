@@ -60,6 +60,8 @@ class FileController extends Controller
 
     /**
      * Download the specified resource.
+     * This could/should go into a seperate controller (perhaps 'DownloadController'), 
+     * but I've left it here for simplicity.
      *
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
