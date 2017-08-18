@@ -36,3 +36,9 @@ Check the following paths for the code review:
 * database/factories/ModelFactory.php
 * routes/api.php
 * tests/feature
+
+## API routes
+* post: /api
+* get all records: /api
+* get specific resource: /api/{id}
+* download specific file: /api/download/{id}
