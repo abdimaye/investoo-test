@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\File;
-use App\Investoo\CsvFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Investoo\CsvFile;
 
 class FileController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
@@ -67,7 +66,6 @@ class FileController extends Controller
     public function download(File $file, $id)
     {       
         if ($file = $file->find($id)) {
-            
             $filename = "{$file->id}.csv";
 
             if (Storage::disk('local')->exists($filename)) {
