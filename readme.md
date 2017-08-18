@@ -32,7 +32,7 @@ All 4 tests should pass.
 
 Check the following paths for the code review:
 * app/investoo
-* app/http/controllers/FileController
-* database/factories/ModelFactory
-* routes/api
+* app/http/controllers/FileController.php
+* database/factories/ModelFactory.php
+* routes/api.php
 * tests/feature
